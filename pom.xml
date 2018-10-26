@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mywork</groupId>
@@ -19,31 +20,6 @@
     <organization>
         <name>锐捷脚手架项目</name>
     </organization>
-
-    <!-- 配置远程仓库. -->
-   <repositories>
-        <repository>
-            <id>riil-nexus-releases</id>
-            <url>http://39.106.210.119:8081/repository/maven-releases</url>
-        </repository>
-        <repository>
-            <id>aliyun-repo</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-        </repository>
-    </repositories>
-
-    <distributionManagement>
-        <repository>
-            <id>riil-nexus-releases</id>
-            <name>Releases</name>
-            <url>http://39.106.210.119:8081/repository/maven-releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>riil-nexus-releases</id>
-            <name>Snapshot</name>
-            <url>http://39.106.210.119:8081/repository/maven-snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <!-- 子模块. -->
     <modules>
@@ -74,5 +50,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

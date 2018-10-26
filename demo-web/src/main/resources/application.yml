@@ -1,4 +1,5 @@
 #启用指定的 profiles
+Debug: true
 spring:
   profiles:
     active: local
@@ -8,58 +9,28 @@ spring:
 
 spring:
    profiles: local
+   datasource:
+      name: druid
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mysql://localhost:3306/ims?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+      username: root
+      password: abcd1234
+      driver-class-name: com.mysql.jdbc.Driver
+
+#mybatis mapper 配置.
+mybatis:
+
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
 
 #服务端口.
 server:
   port: 8080
 
-#dubbo 服务提供者配置.
-management:
-   server:
-     port: 8899
-   endpoints:
-      web:
-       base-path: /manage
 
 #日志路径和名称配置.
 logging:
-  file: service-template
-  path: ./log
+  file: demo
+  path: D://logs
 
----
-#测试环境.
-
-spring:
-   profiles: test
-
-#服务端口.
-server:
-  port: 8080
-
-#dubbo 服务提供者配置.
-management:
-   server:
-     port: 8899
-   endpoints:
-      web:
-       base-path: /manage
-
-#日志路径和名称配置.
-logging:
-  file: service-template
-  path: /home/logs/
-
----
-#阿里云 ecs 预发布环境.
-
-spring:
-   profiles: prod
-
-#服务端口.
-server:
-  port: 8080
-
-#日志路径和名称配置.
-logging:
-  file: service-template
-  path: /home/logs/

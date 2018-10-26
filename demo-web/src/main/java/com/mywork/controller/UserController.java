@@ -1,8 +1,12 @@
 package com.mywork.controller;
 
-import org.springframework.stereotype.Component;
-
-import javax.ws.rs.*;
+import com.mywork.api.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
@@ -12,17 +16,23 @@ import javax.ws.rs.*;
  * @Modified by:
  */
 
-@Component
-@Path("/api/v1/user")
-@Produces("application/json")
-@Consumes("application/json")
+@Controller
+@RequestMapping(value = "/api/v1/app", method = RequestMethod.GET)
+
 public class UserController {
 
-    @POST
-    @Path("/login")
-    public String insertAlarmData() {
+    @Autowired
+    private IUserService userService;
+
+    @RequestMapping(value = "/welcome")
+    @ResponseBody
+    public String welcome() {
         return "success";
     }
 
-
+    @RequestMapping(value = "/users")
+    @ResponseBody
+    public Object getUses() {
+        return userService.getUsers("mengjingyi");
+    }
 }

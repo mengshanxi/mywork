@@ -30,11 +30,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.riil.platform</groupId>
-            <artifactId>common-util</artifactId>
-        </dependency>
     </dependencies>
 
 
