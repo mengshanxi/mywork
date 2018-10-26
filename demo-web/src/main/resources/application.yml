@@ -26,7 +26,7 @@ mybatis:
 
 #服务端口.
 server:
-  port: 8080
+  port: 7777
 
 
 #日志路径和名称配置.
