@@ -1,0 +1,76 @@
+DROP TABLE IF EXISTS `app_base`;
+CREATE TABLE `app_base` (
+  `id` varchar(36) NOT NULL COMMENT '主键',
+  `ip` varchar(100) DEFAULT NULL COMMENT '应用ip',
+  `port` varchar(5) DEFAULT NULL COMMENT '应用端口',
+  `name` varchar(100) DEFAULT NULL COMMENT '应用名称',
+  `login_name` varchar(100) DEFAULT NULL COMMENT '登录用户名',
+  `login_password` varchar(100) DEFAULT NULL COMMENT '登录密码',
+  `login_url` varchar(1000) DEFAULT NULL COMMENT '登录url',
+  `tags` varchar(100) DEFAULT NULL COMMENT '业务标签',
+  `short_name` varchar(100) DEFAULT NULL COMMENT '应用简称',
+  `apdex_t` varchar(20) DEFAULT '1000' COMMENT 'apdex阈值',
+  `app_delay_t` varchar(20) DEFAULT '600' COMMENT '应用延迟阈值',
+  `net_delay_t` varchar(20) DEFAULT '90' COMMENT '网络延迟阈值',
+  `dns_delay_t` varchar(20) DEFAULT '600' COMMENT 'DNS延迟阈值',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `status` smallint(2) DEFAULT '1' COMMENT '标识状态（1启用、0禁用）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `alarm_data`;
+CREATE TABLE `alarm_data` (
+  `id` varchar(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `res_ip` varchar(100) DEFAULT NULL COMMENT '业务ip',
+  `res_name` varchar(100) DEFAULT NULL COMMENT '业务名称',
+  `service_id` varchar(100) DEFAULT NULL,
+  `type` varchar(10) DEFAULT NULL COMMENT '告警类型',
+  `status` varchar(10) DEFAULT NULL COMMENT '告警状态',
+  `ext` text,
+  `time` varchar(1000) DEFAULT NULL,
+  `level` varchar(10) DEFAULT '0' COMMENT '告警级别（0:关注;1:计划;2:立刻）',
+  `update_time` varchar(1000) DEFAULT NULL,
+  `open` varchar(10) DEFAULT '0' COMMENT '查看状态(0:未被查看 1:已被查看)',
+  `vip_id` varchar(36) DEFAULT NULL COMMENT '关键人id，关键人告警使用',
+  `harm` varchar(1000) DEFAULT NULL COMMENT '危害',
+  `urgency_degree` varchar(1000) DEFAULT NULL COMMENT '紧急程度',
+  `suggestion` varchar(1000) DEFAULT NULL COMMENT '建议',
+  `reason` text COMMENT '原因',
+  `dev_id` varchar(36) DEFAULT NULL COMMENT '设备id，设备告警使用',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `alarm_cause`;
+CREATE TABLE `alarm_cause` (
+  `alarmId` varchar(50) DEFAULT NULL,
+  `ip` varchar(100) DEFAULT NULL,
+  `networkSegment` varchar(100) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `regionName` varchar(100) DEFAULT NULL,
+  `users` varchar(100) DEFAULT NULL,
+  `rushTime` varchar(100) DEFAULT NULL,
+  `leftTime` varchar(100) DEFAULT NULL,
+  `rushUsers` varchar(100) DEFAULT NULL,
+  `appDelay` varchar(100) DEFAULT NULL,
+  `netDelay` varchar(100) DEFAULT NULL,
+  `dnsDelay` varchar(100) DEFAULT NULL,
+  `keyPersonName` varchar(100) DEFAULT NULL,
+  `desc` varchar(500) DEFAULT NULL,
+  `status` varchar(10) DEFAULT '',
+  `technology` varchar(500) DEFAULT NULL,
+  `service_id` varchar(100) DEFAULT NULL,
+  `satisfyDegree` varchar(255) DEFAULT NULL,
+  `section` varchar(500) DEFAULT NULL,
+  `process` text,
+  `totalDelay` varchar(100) DEFAULT NULL,
+  `dnsSatisfyDegree` varchar(255) DEFAULT NULL,
+  `netSatisfyDegree` varchar(255) DEFAULT NULL,
+  `appSatisfyDegree` varchar(255) DEFAULT NULL,
+  `min_dns_delay` varchar(100) DEFAULT '0' COMMENT 'dns阈值最小值',
+  `max_dns_delay` varchar(100) DEFAULT '0' COMMENT 'dns阈值最大值',
+  `min_net_delay` varchar(100) DEFAULT '0' COMMENT '网络阈值最小值',
+  `max_net_delay` varchar(100) DEFAULT '0' COMMENT '网络阈值最大值',
+  `min_app_delay` varchar(100) DEFAULT '0' COMMENT '应用阈值最小值',
+  `max_app_delay` varchar(100) DEFAULT '0' COMMENT '应用阈值最大值'
+);

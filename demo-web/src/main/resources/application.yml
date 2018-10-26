@@ -1,0 +1,65 @@
+#启用指定的 profiles
+spring:
+  profiles:
+    active: local
+
+---
+#本机开发环境.
+
+spring:
+   profiles: local
+
+#服务端口.
+server:
+  port: 8080
+
+#dubbo 服务提供者配置.
+management:
+   server:
+     port: 8899
+   endpoints:
+      web:
+       base-path: /manage
+
+#日志路径和名称配置.
+logging:
+  file: service-template
+  path: ./log
+
+---
+#测试环境.
+
+spring:
+   profiles: test
+
+#服务端口.
+server:
+  port: 8080
+
+#dubbo 服务提供者配置.
+management:
+   server:
+     port: 8899
+   endpoints:
+      web:
+       base-path: /manage
+
+#日志路径和名称配置.
+logging:
+  file: service-template
+  path: /home/logs/
+
+---
+#阿里云 ecs 预发布环境.
+
+spring:
+   profiles: prod
+
+#服务端口.
+server:
+  port: 8080
+
+#日志路径和名称配置.
+logging:
+  file: service-template
+  path: /home/logs/

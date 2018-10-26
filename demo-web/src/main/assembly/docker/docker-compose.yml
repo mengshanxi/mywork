@@ -1,0 +1,12 @@
+version: "3"
+services:
+  app-service:
+    image: __rootArtifactId__-service
+    container_name: __rootArtifactId__-service
+    volumes:
+      - /var/log/alarm-service:/home/log
+    restart: always
+    mem_limit: 520m
+    cpuset: 1
+    environment:
+      - JAVA_OPTS: "-Dspring.profiles.active=prod -Xmx512m -Xms512m"

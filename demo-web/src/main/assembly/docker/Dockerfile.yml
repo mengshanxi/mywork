@@ -1,0 +1,8 @@
+#基础镜像.
+FROM openjdk:8-jdk-alpine
+#镜像维护者
+MAINTAINER "yutaoxu@ruijie.com.cn"
+#将服务代码注入镜像.
+ADD ./app.jar /home/app.jar
+#命令执行入口.
+ENTRYPOINT exec java $JAVA_OPTS -jar /home/app.jar
