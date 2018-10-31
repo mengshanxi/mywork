@@ -5,6 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.util.WebUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 
 
 /**
@@ -27,11 +34,19 @@ public class UserController {
         return "success";
     }
 
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+    @ResponseBody
+    public String upload() {
+        return "{\"pic_url\":\"testurl\"}";
+    }
+
+
     @RequestMapping(value = "/check", method = RequestMethod.GET)
     @ResponseBody
     public String check() {
         return "[\"admin\"]";
     }
+
 
     @RequestMapping(value = "/users")
     @ResponseBody
@@ -44,6 +59,21 @@ public class UserController {
     @ResponseBody
     public String addJob(@RequestBody String ipAddress) {
         return ipAddress;
+    }
+
+    @RequestMapping(value = "/website/import")
+    @ResponseBody
+    public String upload(HttpServletRequest request) {
+        String contentType = request.getContentType();
+        if (contentType != null && contentType.toLowerCase().startsWith("multipart/")) {
+            MultipartHttpServletRequest multipartRequest =
+                    WebUtils.getNativeRequest(request, MultipartHttpServletRequest.class);
+            MultipartFile file = multipartRequest.getFile("file");
+            System.out.println();
+            File uploadFile = FileUtil.upload(file, "D://");
+        }
+
+        return "";
     }
 
     @RequestMapping(value = "/login/account", method = RequestMethod.POST)

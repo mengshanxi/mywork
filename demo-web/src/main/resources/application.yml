@@ -27,6 +27,8 @@ mybatis:
 server:
   port: 7777
 
+multipart:
+  enabled: true
 
 #日志路径和名称配置.
 logging:
